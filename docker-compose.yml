@@ -6,6 +6,8 @@ services:
     ports:
       - "8069:8069"
     environment:
+      - HOST=db
+      - USER=odoo
       - PASSWORD=${DB_PASSWORD}
     volumes:
       - /DATA/crm-odoo/odoo-web-data:/var/lib/odoo
@@ -13,6 +15,8 @@ services:
   db:
     image: postgres:15
     environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
