@@ -1,0 +1,19 @@
+services:
+  web:
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+      - PASSWORD=${DB_PASSWORD}
+    volumes:
+      - /DATA/crm-odoo/odoo-web-data:/var/lib/odoo
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - /DATA/crm-odoo/odoo-db-data:/var/lib/postgresql/data/pgdata
